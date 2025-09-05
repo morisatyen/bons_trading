@@ -135,12 +135,15 @@ export const PaymentSetup: React.FC = () => {
 
           <Card className="bg-blue-50 border-blue-200">
             <div className="flex items-start space-x-3">
+              <Shield className="w-5 h-5 text-blue-600 mt-0.5" />
+              <div>
                 <h4 className="font-medium text-blue-900">Secure & Encrypted</h4>
                 <p className="text-sm text-blue-700">
                   Your payment will be processed securely through Wise's encrypted platform. 
                   We never store your banking details.
                   Your payment information is encrypted and secure. We use bank-level security 
-              <Shield className="w-5 h-5 text-blue-600 mt-0.5" />
+                </p>
+              </div>
             </div>
           </Card>
 

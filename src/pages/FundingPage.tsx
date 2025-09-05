@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CreditCard, Building2, Link2, Plus, CheckCircle, Coins } from 'lucide-react';
+import { Link2, Plus, CheckCircle, Coins, ArrowRight, Shield } from 'lucide-react';
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
@@ -7,10 +7,78 @@ import { Input } from '../components/ui/Input';
 export const FundingPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'tokens' | 'link'>('tokens');
   const [amount, setAmount] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState('card');
+  const [showWiseFlow, setShowWiseFlow] = useState(false);
+  const [wiseStep, setWiseStep] = useState(0);
   const [apiKey, setApiKey] = useState('');
   const [apiSecret, setApiSecret] = useState('');
   const [exchange, setExchange] = useState('');
+
+  const handleWisePayment = () => {
+    setShowWiseFlow(true);
+    setWiseStep(1);
+    
+    // Simulate Wise redirect
+    setTimeout(() => {
+      setWiseStep(2);
+    }, 2000);
+    
+    // Simulate payment completion
+    setTimeout(() => {
+      setWiseStep(3);
+    }, 4000);
+  };
+
+  const WisePaymentModal = () => (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <Card className="max-w-md w-full mx-4">
+        <div className="p-6 text-center">
+          {wiseStep === 1 && (
+            <>
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Redirecting to Wise...</h3>
+              <p className="text-gray-600">Please wait while we redirect you to Wise for secure payment processing.</p>
+            </>
+          )}
+          
+          {wiseStep === 2 && (
+            <>
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="animate-pulse rounded-full h-8 w-8 bg-green-600"></div>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Processing Payment...</h3>
+              <p className="text-gray-600">Your payment is being processed securely through Wise.</p>
+            </>
+          )}
+          
+          {wiseStep === 3 && (
+            <>
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <CheckCircle className="w-8 h-8 text-green-600" />
+              </div>
+              <h3 className="text-lg font-semibold text-green-900 mb-2">Payment Successful!</h3>
+              <p className="text-gray-600 mb-4">
+                ${amount} has been successfully transferred via Wise and converted to BSAI tokens.
+              </p>
+              <div className="bg-green-50 rounded-lg p-3 mb-4">
+                <p className="text-sm text-green-700">
+                  <strong>Transaction ID:</strong> WSE-{Math.random().toString(36).substr(2, 9).toUpperCase()}
+                </p>
+                <p className="text-sm text-green-700">
+                  <strong>BSAI Tokens:</strong> {amount ? (parseFloat(amount) / 20).toFixed(2) : '0'} BSAI
+                </p>
+              </div>
+              <Button onClick={() => setShowWiseFlow(false)} fullWidth>
+                Continue Trading
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </>
+          )}
+        </div>
+      </Card>
+    </div>
+  );
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -111,45 +179,44 @@ export const FundingPage: React.FC = () => {
                   </div>
                 )}
 
-                {/* Payment Methods */}
+                {/* Wise Payment Method */}
                 <div>
-                  <h4 className="font-medium text-gray-900 mb-3">Payment Method</h4>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <button
-                      onClick={() => setPaymentMethod('card')}
-                      className={`
-                        p-4 border-2 rounded-lg text-left transition-all duration-200
-                        ${paymentMethod === 'card'
-                          ? 'border-blue-500 bg-blue-50'
-                          : 'border-gray-200 hover:border-gray-300'
-                        }
-                      `}
-                    >
-                      <CreditCard className={`w-6 h-6 mb-2 ${paymentMethod === 'card' ? 'text-blue-600' : 'text-gray-400'}`} />
-                      <h5 className="font-medium text-gray-900">Credit/Debit Card</h5>
-                      <p className="text-sm text-gray-600">Instant processing</p>
-                    </button>
-                    
-                    <button
-                      onClick={() => setPaymentMethod('bank')}
-                      className={`
-                        p-4 border-2 rounded-lg text-left transition-all duration-200
-                        ${paymentMethod === 'bank'
-                          ? 'border-blue-500 bg-blue-50'
-                          : 'border-gray-200 hover:border-gray-300'
-                        }
-                      `}
-                    >
-                      <Building2 className={`w-6 h-6 mb-2 ${paymentMethod === 'bank' ? 'text-blue-600' : 'text-gray-400'}`} />
-                      <h5 className="font-medium text-gray-900">Bank Transfer</h5>
-                      <p className="text-sm text-gray-600">Lower fees, 1-2 days</p>
-                    </button>
+                  <h4 className="font-medium text-gray-900 mb-3">Secure Payment with Wise</h4>
+                  <div className="border-2 border-green-200 bg-green-50 rounded-lg p-4">
+                    <div className="flex items-center space-x-3 mb-3">
+                      <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                        <svg className="w-6 h-6 text-green-600" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"/>
+                          <path d="M9 12l2 2 4-4" stroke="white" strokeWidth="2" fill="none"/>
+                        </svg>
+                      </div>
+                      <div>
+                        <h5 className="font-medium text-green-900">Pay with Wise</h5>
+                        <p className="text-sm text-green-700">Fast, secure, and low-cost international transfers</p>
+                      </div>
+                    </div>
+                    <div className="bg-white rounded-lg p-3">
+                      <div className="flex items-center space-x-2 text-sm text-green-700">
+                        <CheckCircle className="w-4 h-4" />
+                        <span>Up to 8x cheaper than banks</span>
+                      </div>
+                      <div className="flex items-center space-x-2 text-sm text-green-700 mt-1">
+                        <Shield className="w-4 h-4" />
+                        <span>Bank-level security & regulation</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <Button fullWidth size="lg" disabled={!amount || parseFloat(amount) < 100}>
+                <Button 
+                  fullWidth 
+                  size="lg" 
+                  disabled={!amount || parseFloat(amount) < 100}
+                  onClick={handleWisePayment}
+                  className="bg-green-600 hover:bg-green-700"
+                >
                   <Plus className="w-4 h-4 mr-2" />
-                  Purchase {amount ? `$${amount}` : ''} in BSAI Tokens
+                  Purchase {amount ? `$${amount}` : ''} in BSAI Tokens via Wise
                 </Button>
               </div>
             </div>
@@ -260,6 +327,8 @@ export const FundingPage: React.FC = () => {
           </Card>
         </div>
       )}
+      
+      {showWiseFlow && <WisePaymentModal />}
     </div>
   );
 };

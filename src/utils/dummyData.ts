@@ -111,3 +111,147 @@ export const portfolioChartData = [
   { name: 'May', value: 118000 },
   { name: 'Jun', value: 125430 }
 ];
+
+export const dummyStocks: Stock[] = [
+  {
+    symbol: 'INFY',
+    name: 'Infosys Limited',
+    currentPrice: 1456.75,
+    change: 23.45,
+    changePercent: 1.64,
+    volume: 2847563,
+    marketCap: '₹6,04,123 Cr',
+    sector: 'IT Services'
+  },
+  {
+    symbol: 'TCS',
+    name: 'Tata Consultancy Services',
+    currentPrice: 3542.80,
+    change: -45.20,
+    changePercent: -1.26,
+    volume: 1234567,
+    marketCap: '₹12,85,456 Cr',
+    sector: 'IT Services'
+  },
+  {
+    symbol: 'RELIANCE',
+    name: 'Reliance Industries Ltd',
+    currentPrice: 2456.90,
+    change: 67.85,
+    changePercent: 2.84,
+    volume: 3456789,
+    marketCap: '₹16,62,789 Cr',
+    sector: 'Oil & Gas'
+  },
+  {
+    symbol: 'HDFCBANK',
+    name: 'HDFC Bank Limited',
+    currentPrice: 1678.45,
+    change: -12.30,
+    changePercent: -0.73,
+    volume: 1876543,
+    marketCap: '₹9,23,456 Cr',
+    sector: 'Banking'
+  },
+  {
+    symbol: 'ICICIBANK',
+    name: 'ICICI Bank Limited',
+    currentPrice: 987.60,
+    change: 15.75,
+    changePercent: 1.62,
+    volume: 2345678,
+    marketCap: '₹6,89,123 Cr',
+    sector: 'Banking'
+  }
+];
+
+export const dummyMarketDepth: Record<string, MarketDepth> = {
+  INFY: {
+    bids: [
+      { price: 1456.70, quantity: 1250 },
+      { price: 1456.65, quantity: 2340 },
+      { price: 1456.60, quantity: 1890 },
+      { price: 1456.55, quantity: 3450 },
+      { price: 1456.50, quantity: 2100 }
+    ],
+    asks: [
+      { price: 1456.75, quantity: 1100 },
+      { price: 1456.80, quantity: 1750 },
+      { price: 1456.85, quantity: 2200 },
+      { price: 1456.90, quantity: 1650 },
+      { price: 1456.95, quantity: 2850 }
+    ]
+  },
+  TCS: {
+    bids: [
+      { price: 3542.75, quantity: 850 },
+      { price: 3542.70, quantity: 1240 },
+      { price: 3542.65, quantity: 1690 },
+      { price: 3542.60, quantity: 2150 },
+      { price: 3542.55, quantity: 1800 }
+    ],
+    asks: [
+      { price: 3542.80, quantity: 950 },
+      { price: 3542.85, quantity: 1350 },
+      { price: 3542.90, quantity: 1750 },
+      { price: 3542.95, quantity: 1450 },
+      { price: 3543.00, quantity: 2250 }
+    ]
+  },
+  RELIANCE: {
+    bids: [
+      { price: 2456.85, quantity: 1450 },
+      { price: 2456.80, quantity: 2150 },
+      { price: 2456.75, quantity: 1850 },
+      { price: 2456.70, quantity: 2650 },
+      { price: 2456.65, quantity: 1950 }
+    ],
+    asks: [
+      { price: 2456.90, quantity: 1250 },
+      { price: 2456.95, quantity: 1650 },
+      { price: 2457.00, quantity: 2050 },
+      { price: 2457.05, quantity: 1750 },
+      { price: 2457.10, quantity: 2350 }
+    ]
+  }
+};
+
+export const dummyPositions: Position[] = [
+  {
+    symbol: 'INFY',
+    quantity: 50,
+    avgPrice: 1420.30,
+    currentPrice: 1456.75,
+    pnl: 1822.50,
+    pnlPercent: 2.57
+  },
+  {
+    symbol: 'RELIANCE',
+    quantity: 25,
+    avgPrice: 2380.45,
+    currentPrice: 2456.90,
+    pnl: 1911.25,
+    pnlPercent: 3.21
+  }
+];
+
+export const dummyChartData = {
+  '1D': [
+    { time: '09:15', price: 1445.20 },
+    { time: '09:30', price: 1448.75 },
+    { time: '10:00', price: 1452.30 },
+    { time: '10:30', price: 1449.85 },
+    { time: '11:00', price: 1453.40 },
+    { time: '11:30', price: 1456.75 },
+    { time: '12:00', price: 1454.20 },
+    { time: '12:30', price: 1457.90 },
+    { time: '13:00', price: 1456.75 }
+  ],
+  '1W': [
+    { time: 'Mon', price: 1432.50 },
+    { time: 'Tue', price: 1445.20 },
+    { time: 'Wed', price: 1438.75 },
+    { time: 'Thu', price: 1451.30 },
+    { time: 'Fri', price: 1456.75 }
+  ]
+};

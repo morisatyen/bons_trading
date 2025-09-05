@@ -14,6 +14,7 @@ import { Dashboard } from './pages/Dashboard';
 import { TransactionsPage } from './pages/TransactionsPage';
 import { FundingPage } from './pages/FundingPage';
 import { SettingsPage } from './pages/SettingsPage';
+import { FullChartPage } from './pages/FullChartPage';
 
 // Admin Pages
 import { AdminLogin } from './pages/admin/AdminLogin';
@@ -108,6 +109,11 @@ const AppRoutes: React.FC = () => {
           <Layout title="Settings">
             <SettingsPage />
           </Layout>
+        </ProtectedRoute>
+      } />
+      <Route path="/chart/:symbol" element={
+        <ProtectedRoute>
+          <FullChartPage />
         </ProtectedRoute>
       } />
       

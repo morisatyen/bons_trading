@@ -128,7 +128,7 @@ export const LoginPage: React.FC = () => {
           <div className="mt-4 text-center">
             <button
               onClick={() => navigate('/admin/login')}
-              className="text-xs text-gray-400 hover:text-gray-600"
+              className="text-xs text-gray-400 hover:text-gray-600 underline"
             >
               Admin Access
             </button>

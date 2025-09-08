@@ -71,7 +71,7 @@ export const ContractSigning: React.FC = () => {
 
           {/* Action Buttons */}
           <div className="flex space-x-4">
-            <Button variant="outline" onClick={() => setIsReviewing(true)}>
+            <Button variant="outline" onClick={() => setIsReviewing(true)} className='flex items-center space-x-2'>
               <Eye className="w-4 h-4 mr-2" />
               Review Full Contract
             </Button>

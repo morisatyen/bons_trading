@@ -92,6 +92,7 @@ export const KYCVerification: React.FC = () => {
                 variant={uploadedDocs.address ? 'success' : 'outline'} 
                 size="sm"
                 onClick={() => handleFileUpload('address')}
+                className="flex items-center space-x-2"
               >
                 <Upload className="w-4 h-4 mr-2" />
                 {uploadedDocs.address ? 'Uploaded ✓' : 'Upload Document'}
@@ -111,6 +112,7 @@ export const KYCVerification: React.FC = () => {
                 variant={uploadedDocs.selfie ? 'success' : 'outline'} 
                 size="sm"
                 onClick={() => handleFileUpload('selfie')}
+                className="flex items-center space-x-2"
               >
                 <Camera className="w-4 h-4 mr-2" />
                 {uploadedDocs.selfie ? 'Captured ✓' : 'Take Selfie'}

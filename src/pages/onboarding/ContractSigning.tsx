@@ -75,7 +75,7 @@ export const ContractSigning: React.FC = () => {
               <Eye className="w-4 h-4 mr-2" />
               Review Full Contract
             </Button>
-            <Button variant="outline">
+            <Button variant="outline" className='flex items-center space-x-2'>
               <Download className="w-4 h-4 mr-2" />
               Download PDF
             </Button>

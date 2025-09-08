@@ -30,7 +30,7 @@ export const Dashboard: React.FC = () => {
             </p>
           </div>
           <div className="mt-6 lg:mt-0">
-            <Button variant="secondary" onClick={() => navigate('/funding')}>
+            <Button variant="secondary" onClick={() => navigate('/funding')} className="flex items-center justify-center space-x-2">
               <Plus className="w-4 h-4 mr-2" />
               Add Funds
             </Button>
@@ -160,28 +160,28 @@ export const Dashboard: React.FC = () => {
                 variant="outline" 
                 fullWidth 
                 onClick={() => navigate('/funding')}
-                className="justify-start"
+                className="flex items-center justify-center space-x-2"
               >
                 <DollarSign className="w-4 h-4 mr-2" />
-                Add Funds
+                <span>Add Funds</span>
               </Button>
               <Button 
                 variant="outline" 
                 fullWidth 
                 onClick={() => navigate('/funding')}
-                className="justify-start"
+                className="flex items-center justify-center space-x-2"
               >
                 <Link2 className="w-4 h-4 mr-2" />
-                Link Account
+                <span>Link Account</span>
               </Button>
               <Button 
                 variant="outline" 
                 fullWidth 
                 onClick={() => navigate('/transactions')}
-                className="justify-start"
+                className="flex items-center justify-center space-x-2"
               >
                 <TrendingUp className="w-4 h-4 mr-2" />
-                View Transactions
+                <span>View Transactions</span>
               </Button>
             </div>
           </div>

@@ -73,7 +73,7 @@ export const PaymentSetup: React.FC = () => {
                   <strong>Transaction ID:</strong> WSE-{Math.random().toString(36).substr(2, 9).toUpperCase()}
                 </p>
               </div>
-              <Button onClick={handleCompletePayment} fullWidth>
+              <Button onClick={handleCompletePayment} fullWidth className="bg-green-600 hover:bg-green-700 text-white flex items-center justify-center">
                 Continue Setup
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
@@ -154,7 +154,7 @@ export const PaymentSetup: React.FC = () => {
             <Button 
               onClick={handleWisePayment} 
               disabled={!email}
-              className="flex-1 bg-green-600 hover:bg-green-700"
+              className="flex-1 bg-green-600 hover:bg-green-700 text-white flex items-center justify-center"
             >
               Pay with Wise
               <ArrowRight className="w-4 h-4 ml-2" />

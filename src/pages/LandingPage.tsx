@@ -158,7 +158,7 @@ export const LandingPage: React.FC = () => {
                     <span className="text-green-600 font-semibold">$10,000</span>
                   </div>
                 </div>
-                <Button fullWidth size="lg" onClick={() => navigate('/signup')}>
+                <Button fullWidth size="lg" onClick={() => navigate('/signup')} className='flex items-center justify-center space-x-2'>
                   Create Free Account
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </Button>

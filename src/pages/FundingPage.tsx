@@ -213,7 +213,7 @@ export const FundingPage: React.FC = () => {
                   size="lg" 
                   disabled={!amount || parseFloat(amount) < 100}
                   onClick={handleWisePayment}
-                  className="bg-green-600 hover:bg-green-700"
+                  className="bg-green-600 hover:bg-green-700 flex items-center justify-center space-x-2"
                 >
                   <Plus className="w-4 h-4 mr-2" />
                   Purchase {amount ? `$${amount}` : ''} in BSAI Tokens via Wise
@@ -318,6 +318,7 @@ export const FundingPage: React.FC = () => {
                   size="lg" 
                   disabled={!exchange || !apiKey || !apiSecret}
                   variant="success"
+                  className='flex justify-center items-center space-x-2'
                 >
                   <Link2 className="w-4 h-4 mr-2" />
                   Connect Account

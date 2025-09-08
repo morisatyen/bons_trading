@@ -138,7 +138,7 @@ export const OrderDrawer: React.FC<OrderDrawerProps> = ({
                 variant="ghost"
                 size="sm"
                 onClick={() => onViewChart(stock.symbol)}
-                className="w-full mt-2"
+                className="w-full mt-2 justify-center text-sm font-medium text-blue-600 border border-blue-600 hover:bg-blue-50 transition-colors rounded-lg flex items-center justify-center"
               >
                 <BarChart3 className="w-4 h-4 mr-2" />
                 View Full Chart

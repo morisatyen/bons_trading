@@ -88,7 +88,7 @@ export const SuccessConfirmation: React.FC = () => {
             </Button>
           </div>
 
-          <Button size="lg" fullWidth onClick={handleGetStarted}>
+          <Button size="lg" fullWidth onClick={handleGetStarted} className="flex items-center justify-center">
             Go to Dashboard
             <ArrowRight className="w-5 h-5 ml-2" />
           </Button>

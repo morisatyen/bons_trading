@@ -193,7 +193,7 @@ export const KYCPage: React.FC = () => {
                         <Button
                           variant="success"
                           onClick={() => handleApprove(submission.id)}
-                          className="flex-1"
+                          className="flex-1 align-middle flex items-center justify-center"
                         >
                           <CheckCircle className="w-4 h-4 mr-2" />
                           Approve
@@ -201,7 +201,7 @@ export const KYCPage: React.FC = () => {
                         <Button
                           variant="error"
                           onClick={() => handleReject(submission.id)}
-                          className="flex-1"
+                          className="flex-1 align-middle flex items-center justify-center"
                         >
                           <XCircle className="w-4 h-4 mr-2" />
                           Reject

@@ -72,7 +72,6 @@ export const KYCVerification: React.FC = () => {
                 variant={uploadedDocs.id ? 'success' : 'outline'} 
                 size="sm"
                 onClick={() => handleFileUpload('id')}
-                className="flex items-center className="flex items-center space-x-2""
               >
                 <Upload className="w-4 h-4 mr-2" />
                 {uploadedDocs.id ? 'Uploaded ✓' : 'Upload Document'}

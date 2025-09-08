@@ -75,9 +75,9 @@ export const LandingPage: React.FC = () => {
             already maximizing their returns with Bons-AI.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-            <Button size="lg" onClick={() => navigate('/signup')} className="px-8 py-4">
-              Create Free Account
-              <ArrowRight className="w-5 h-5 ml-2" />
+            <Button size="lg" onClick={() => navigate('/signup')} className="px-8 py-4 flex items-center space-x-2">
+              <span>Create Free Account</span>
+              <ArrowRight className="w-5 h-5" />
             </Button>
             <Button variant="outline" size="lg" onClick={() => navigate('/login')}>
               Watch Demo

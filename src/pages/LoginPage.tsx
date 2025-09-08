@@ -113,7 +113,7 @@ export const LoginPage: React.FC = () => {
             </div>
           </div>
 
-          <div className="mt-8 text-center">
+          <div className="mt-8 text-center text-sm text-gray-600">
             <p className="text-gray-600">
               Don't have an account?{' '}
               <button

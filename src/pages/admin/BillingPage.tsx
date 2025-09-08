@@ -74,11 +74,11 @@ export const BillingPage: React.FC = () => {
           <p className="text-gray-600">Manage customer billing and generate financial reports</p>
         </div>
         <div className="flex space-x-3">
-          <Button variant="outline">
+          <Button variant="outline" className='flex items-center'>
             <Calendar className="w-4 h-4 mr-2" />
             Generate Report
           </Button>
-          <Button>
+          <Button variant="outline" className='flex items-center'>
             <Download className="w-4 h-4 mr-2" />
             Export Data
           </Button>

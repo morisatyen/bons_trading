@@ -3,11 +3,13 @@ import { Search, Filter, Download, TrendingUp, TrendingDown, DollarSign, Bell } 
 import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
-import { StockList } from '../components/trading/StockList';
+import { AllStocksList } from '../components/trading/AllStocksList';
+import { WatchlistView } from '../components/trading/WatchlistView';
+import { PortfolioView } from '../components/trading/PortfolioView';
 import { OrderDrawer } from '../components/trading/OrderDrawer';
 import { OrderConfirmationModal } from '../components/trading/OrderConfirmationModal';
-import { dummyTransactions, dummyStocks } from '../utils/dummyData';
-import { Stock, Order } from '../types';
+import { dummyTransactions, dummyStocks, dummyWatchlist, dummyHoldings, dummyTradeHistory } from '../utils/dummyData';
+import { Stock, Order, WatchlistItem, Holding } from '../types';
 import { useNavigate } from 'react-router-dom';
 
 export const TransactionsPage: React.FC = () => {
@@ -19,7 +21,29 @@ export const TransactionsPage: React.FC = () => {
   const [isOrderDrawerOpen, setIsOrderDrawerOpen] = useState(false);
   const [confirmationOrder, setConfirmationOrder] = useState<Order | null>(null);
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<'stocks' | 'transactions'>('stocks');
+  const [activeTab, setActiveTab] = useState<'all-stocks' | 'watchlist' | 'portfolio' | 'transactions'>('all-stocks');
+  const [watchlist, setWatchlist] = useState<WatchlistItem[]>(dummyWatchlist);
+  const [holdings] = useState<Holding[]>(dummyHoldings);
+  const [selectedPortfolioStock, setSelectedPortfolioStock] = useState<string | undefined>();
+
+  const handleAddToWatchlist = (symbol: string) => {
+    if (!watchlist.some(item => item.symbol === symbol)) {
+      setWatchlist(prev => [...prev, { symbol, addedAt: new Date().toISOString() }]);
+    }
+  };
+
+  const handleRemoveFromWatchlist = (symbol: string) => {
+    setWatchlist(prev => prev.filter(item => item.symbol !== symbol));
+  };
+
+  const handleViewPortfolio = (symbol?: string) => {
+    setSelectedPortfolioStock(symbol);
+    setActiveTab('portfolio');
+  };
+
+  const handleBackToPortfolio = () => {
+    setSelectedPortfolioStock(undefined);
+  };
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -106,14 +130,34 @@ export const TransactionsPage: React.FC = () => {
       <div className="border-b border-gray-200">
         <nav className="-mb-px flex space-x-8">
           <button
-            onClick={() => setActiveTab('stocks')}
+            onClick={() => setActiveTab('all-stocks')}
             className={`py-2 px-1 border-b-2 font-medium text-sm transition-colors ${
-              activeTab === 'stocks'
+              activeTab === 'all-stocks'
                 ? 'border-blue-500 text-blue-600'
                 : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
             }`}
           >
-            Stock Market
+            All Stocks
+          </button>
+          <button
+            onClick={() => setActiveTab('watchlist')}
+            className={`py-2 px-1 border-b-2 font-medium text-sm transition-colors ${
+              activeTab === 'watchlist'
+                ? 'border-blue-500 text-blue-600'
+                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+            }`}
+          >
+            Watchlist ({watchlist.length})
+          </button>
+          <button
+            onClick={() => handleViewPortfolio()}
+            className={`py-2 px-1 border-b-2 font-medium text-sm transition-colors ${
+              activeTab === 'portfolio'
+                ? 'border-blue-500 text-blue-600'
+                : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+            }`}
+          >
+            Portfolio ({holdings.length})
           </button>
           <button
             onClick={() => setActiveTab('transactions')}
@@ -166,8 +210,35 @@ export const TransactionsPage: React.FC = () => {
       )}
 
       {/* Content based on active tab */}
-      {activeTab === 'stocks' && (
-        <StockList stocks={dummyStocks} onBuyClick={handleBuyClick} />
+      {activeTab === 'all-stocks' && (
+        <AllStocksList 
+          stocks={dummyStocks} 
+          watchlist={watchlist}
+          onAddToWatchlist={handleAddToWatchlist}
+          onRemoveFromWatchlist={handleRemoveFromWatchlist}
+          onBuyClick={handleBuyClick} 
+        />
+      )}
+
+      {activeTab === 'watchlist' && (
+        <WatchlistView 
+          watchlist={watchlist}
+          stocks={dummyStocks}
+          onRemoveFromWatchlist={handleRemoveFromWatchlist}
+          onBuyClick={handleBuyClick}
+          onViewPortfolio={handleViewPortfolio}
+        />
+      )}
+
+      {activeTab === 'portfolio' && (
+        <PortfolioView 
+          holdings={holdings}
+          tradeHistory={dummyTradeHistory}
+          stocks={dummyStocks}
+          selectedStock={selectedPortfolioStock}
+          onBack={handleBackToPortfolio}
+          onBuyClick={handleBuyClick}
+        />
       )}
 
       {/* Transactions List */}

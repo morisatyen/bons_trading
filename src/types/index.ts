@@ -77,3 +77,29 @@ export interface Order {
   status: 'pending' | 'executed' | 'cancelled';
   timestamp: string;
 }
+
+export interface WatchlistItem {
+  symbol: string;
+  addedAt: string;
+}
+
+export interface Holding {
+  symbol: string;
+  quantity: number;
+  avgPrice: number;
+  currentPrice: number;
+  currentValue: number;
+  pnl: number;
+  pnlPercent: number;
+  lastUpdated: string;
+}
+
+export interface TradeHistory {
+  id: string;
+  symbol: string;
+  type: 'buy' | 'sell';
+  quantity: number;
+  price: number;
+  date: string;
+  total: number;
+}

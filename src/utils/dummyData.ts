@@ -162,6 +162,16 @@ export const dummyStocks: Stock[] = [
     volume: 2345678,
     marketCap: '₹6,89,123 Cr',
     sector: 'Banking'
+  },
+  {
+    symbol: 'WIPRO',
+    name: 'Wipro Limited',
+    currentPrice: 432.15,
+    change: -8.25,
+    changePercent: -1.87,
+    volume: 1567890,
+    marketCap: '₹2,34,567 Cr',
+    sector: 'IT Services'
   }
 ];
 
@@ -214,6 +224,59 @@ export const dummyMarketDepth: Record<string, MarketDepth> = {
       { price: 2457.10, quantity: 2350 }
     ]
   }
+};
+
+export const dummyWatchlist: WatchlistItem[] = [
+  { symbol: 'INFY', addedAt: '2024-01-20T10:30:00Z' },
+  { symbol: 'TCS', addedAt: '2024-01-19T14:15:00Z' },
+  { symbol: 'RELIANCE', addedAt: '2024-01-18T09:45:00Z' }
+];
+
+export const dummyHoldings: Holding[] = [
+  {
+    symbol: 'INFY',
+    quantity: 20,
+    avgPrice: 1450.30,
+    currentPrice: 1456.75,
+    currentValue: 29135,
+    pnl: 129,
+    pnlPercent: 0.44,
+    lastUpdated: '2024-01-22T15:30:00Z'
+  },
+  {
+    symbol: 'RELIANCE',
+    quantity: 15,
+    avgPrice: 2380.45,
+    currentPrice: 2456.90,
+    currentValue: 36853.50,
+    pnl: 1146.75,
+    pnlPercent: 3.21,
+    lastUpdated: '2024-01-22T15:30:00Z'
+  },
+  {
+    symbol: 'HDFCBANK',
+    quantity: 10,
+    avgPrice: 1695.20,
+    currentPrice: 1678.45,
+    currentValue: 16784.50,
+    pnl: -167.50,
+    pnlPercent: -0.99,
+    lastUpdated: '2024-01-22T15:30:00Z'
+  }
+];
+
+export const dummyTradeHistory: Record<string, TradeHistory[]> = {
+  INFY: [
+    { id: 'T001', symbol: 'INFY', type: 'buy', quantity: 10, price: 1445.20, date: '2024-01-15', total: 14452 },
+    { id: 'T002', symbol: 'INFY', type: 'buy', quantity: 10, price: 1455.40, date: '2024-01-18', total: 14554 },
+    { id: 'T003', symbol: 'INFY', type: 'sell', quantity: 5, price: 1460.80, date: '2024-01-20', total: 7304 }
+  ],
+  RELIANCE: [
+    { id: 'T004', symbol: 'RELIANCE', type: 'buy', quantity: 15, price: 2380.45, date: '2024-01-16', total: 35706.75 }
+  ],
+  HDFCBANK: [
+    { id: 'T005', symbol: 'HDFCBANK', type: 'buy', quantity: 10, price: 1695.20, date: '2024-01-17', total: 16952 }
+  ]
 };
 
 export const dummyPositions: Position[] = [

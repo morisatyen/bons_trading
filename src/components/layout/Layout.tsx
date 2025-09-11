@@ -24,14 +24,7 @@ export const Layout: React.FC<LayoutProps> = ({ children, title }) => {
     setIsMobileMenuOpen(false);
   };
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
-
+ 
   return (
     <div className="min-h-screen bg-gray-50">
       <Header title={title} onMenuToggle={toggleMobileMenu} />

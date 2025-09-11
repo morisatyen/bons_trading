@@ -22,6 +22,7 @@ import { AdminDashboard } from './pages/admin/AdminDashboard';
 import { CustomersPage } from './pages/admin/CustomersPage';
 import { KYCPage } from './pages/admin/KYCPage';
 import { BillingPage } from './pages/admin/BillingPage';
+import Chatbot from './pages/admin/Chatbot';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode; adminRequired?: boolean }> = ({ 
   children, 
@@ -108,6 +109,13 @@ const AppRoutes: React.FC = () => {
         <ProtectedRoute>
           <Layout title="Settings">
             <SettingsPage />
+          </Layout>
+        </ProtectedRoute>
+      } />
+      <Route path="/chatbot" element={
+        <ProtectedRoute>
+          <Layout title="Chatbot">
+            <Chatbot />
           </Layout>
         </ProtectedRoute>
       } />

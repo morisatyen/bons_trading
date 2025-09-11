@@ -7,7 +7,8 @@ const customerNavItems = [
   { id: 'dashboard', label: 'Dashboard', icon: BarChart3, path: '/dashboard' },
   { id: 'transactions', label: 'Transactions', icon: FileText, path: '/transactions' },
   { id: 'funding', label: 'Add Funds', icon: DollarSign, path: '/funding' },
-  { id: 'settings', label: 'Settings', icon: Settings, path: '/settings' }
+  { id: 'settings', label: 'Settings', icon: Settings, path: '/settings' },
+  { id: 'chatbot', label: 'Chatbot', icon: Users, path: '/chatbot' }
 ];
 
 const adminNavItems = [

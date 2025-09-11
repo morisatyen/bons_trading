@@ -15,7 +15,6 @@ import { TransactionsPage } from './pages/TransactionsPage';
 import { FundingPage } from './pages/FundingPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { FullChartPage } from './pages/FullChartPage';
-import { ContactSupportPage } from './pages/ContactSupportPage';
 
 // Admin Pages
 import { AdminLogin } from './pages/admin/AdminLogin';
@@ -109,13 +108,6 @@ const AppRoutes: React.FC = () => {
         <ProtectedRoute>
           <Layout title="Settings">
             <SettingsPage />
-          </Layout>
-        </ProtectedRoute>
-      } />
-      <Route path="/support" element={
-        <ProtectedRoute>
-          <Layout title="Contact Support">
-            <ContactSupportPage />
           </Layout>
         </ProtectedRoute>
       } />

@@ -9,8 +9,7 @@ interface LayoutProps {
 }
 
 export const Layout: React.FC<LayoutProps> = ({ children, title }) => {
-  const { user } = useAuth();
-  // const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user } = useAuth();  
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   if (!user) {

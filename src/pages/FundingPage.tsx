@@ -69,7 +69,7 @@ export const FundingPage: React.FC = () => {
                   <strong>BSAI Tokens:</strong> {amount ? (parseFloat(amount) / 20).toFixed(2) : '0'} BSAI
                 </p>
               </div>
-              <Button onClick={() => setShowWiseFlow(false)} fullWidth>
+              <Button onClick={() => setShowWiseFlow(false)} fullWidth size="lg" className="bg-green-600 hover:bg-green-700 flex items-center justify-center">
                 Continue Trading
                 <ArrowRight className="w-4 h-4 ml-2" />
               </Button>

@@ -8,6 +8,7 @@ const customerNavItems = [
   { id: 'transactions', label: 'Transactions', icon: FileText, path: '/transactions' },
   { id: 'funding', label: 'Add Funds', icon: DollarSign, path: '/funding' },
   { id: 'support', label: 'Contact Support', icon: MessageCircle, path: '/support' },
+  { id: 'support', label: 'Contact Support', icon: MessageCircle, path: '/support' },
   { id: 'settings', label: 'Settings', icon: Settings, path: '/settings' }
 ];
 
@@ -17,9 +18,15 @@ const adminNavItems = [
   { id: 'kyc', label: 'KYC Review', icon: Shield, path: '/admin/kyc' },
   { id: 'billing', label: 'Billing', icon: CreditCard, path: '/admin/billing' },
   { id: 'support', label: 'Contact Support', icon: MessageCircle, path: '/support' }
+  { id: 'support', label: 'Contact Support', icon: MessageCircle, path: '/support' }
 ];
 
 interface NavigationProps {
+  isOpen?: boolean;
+  onClose?: () => void;
+}
+
+export const Navigation: React.FC<NavigationProps> = ({ isOpen = true, onClose }) => {
   isOpen?: boolean;
   onClose?: () => void;
 }
@@ -30,6 +37,11 @@ export const Navigation: React.FC<NavigationProps> = ({ isOpen = true, onClose }
   const navigate = useNavigate();
   
   const navItems = isAdmin ? adminNavItems : customerNavItems;
+
+  const handleNavClick = (path: string) => {
+    navigate(path);
+    if (onClose) onClose();
+  };
 
   const handleNavClick = (path: string) => {
     navigate(path);
@@ -63,6 +75,42 @@ export const Navigation: React.FC<NavigationProps> = ({ isOpen = true, onClose }
               <span className="text-lg font-semibold text-gray-900">
                 {isAdmin ? 'Admin' : 'Bons-AI'}
               </span>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+            >
+              <X className="w-5 h-5 text-gray-500" />
+            </button>
+          </div>
+        )}
+        
+        <div className="space-y-2">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = location.pathname === item.path;
+            
+            return (
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item.path)}
+                className={`
+                  w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-left
+                  transition-all duration-200 group
+                  ${isActive 
+                    ? 'bg-blue-50 text-blue-700 shadow-sm' 
+                    : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                  }
+                `}
+              >
+                <Icon className={`w-5 h-5 ${isActive ? 'text-blue-600' : 'text-gray-400 group-hover:text-gray-600'}`} />
+                <span className="font-medium">{item.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </nav>
+    </>
             </div>
             <button
               onClick={onClose}

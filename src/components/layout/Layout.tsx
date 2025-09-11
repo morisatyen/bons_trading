@@ -11,10 +11,19 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({ children, title }) => {
   const { user } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   if (!user) {
     return <>{children}</>;
   }
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -29,6 +38,16 @@ export const Layout: React.FC<LayoutProps> = ({ children, title }) => {
       <Header title={title} onMenuToggle={toggleMobileMenu} />
       <div className="flex">
         {/* Desktop Navigation */}
+        <div className="hidden lg:block">
+          <Navigation />
+        </div>
+        
+        {/* Mobile Navigation */}
+        <Navigation 
+          isOpen={isMobileMenuOpen} 
+          onClose={closeMobileMenu}
+        />
+        
         <div className="hidden lg:block">
           <Navigation />
         </div>
